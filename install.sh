@@ -124,7 +124,7 @@ echo -ne "
 "
 # mkdir -p /mnt/opt/swap
 # chattr +C /mnt/opt/swap
-# dd if=/dev/zero of=/mnt/opt/swap/swapfile bs=1M count=8192 status=progress
+# dd if=/dev/zero of=/mnt/opt/swap/swapfile bs=1M count=4096 status=progress
 # chmod 600 /mnt/opt/swap/swapfile
 # chown root /mnt/opt/swap/swapfile
 # mkswap /mnt/opt/swap/swapfile
