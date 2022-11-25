@@ -1,0 +1,2 @@
+- [x] Add necessary files.
+- [ ] Add a base install.sh script.
