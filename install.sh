@@ -26,14 +26,19 @@ source /root/.env
 clear
 echo -ne "
 ------------------------------------------------------------------------------------------
-          ░█████╗░██████╗░░█████╗░██╗░░██╗  ███╗░░██╗███████╗███╗░░░███╗░█████╗░
-          ██╔══██╗██╔══██╗██╔══██╗██║░░██║  ████╗░██║██╔════╝████╗░████║██╔══██╗
-          ███████║██████╔╝██║░░╚═╝███████║  ██╔██╗██║█████╗░░██╔████╔██║██║░░██║
-          ██╔══██║██╔══██╗██║░░██╗██╔══██║  ██║╚████║██╔══╝░░██║╚██╔╝██║██║░░██║
-          ██║░░██║██║░░██║╚█████╔╝██║░░██║  ██║░╚███║███████╗██║░╚═╝░██║╚█████╔╝
-          ╚═╝░░╚═╝╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝  ╚═╝░░╚══╝╚══════╝╚═╝░░░░░╚═╝░╚════╝░
+                       /$$    /$$         /$$       /$$          
+                      | $$   | $$        |__/      | $$          
+                      | $$   | $$/$$$$$$  /$$  /$$$$$$$ /$$   /$$                        
+                      |  $$ / $$/$$__  $$| $$ /$$__  $$| $$  | $$
+                       \  $$ $$/ $$  \ $$| $$| $$  | $$| $$  | $$
+                        \  $$$/| $$  | $$| $$| $$  | $$| $$  | $$
+                         \  $/ |  $$$$$$/| $$|  $$$$$$$|  $$$$$$$
+                          \_/   \______/ |__/ \_______/ \____  $$
+                                                        /$$  | $$
+                                                       |  $$$$$$/
+                                                        \______/
 ------------------------------------------------------------------------------------------
-                              Automated Void Installer
+                               Automated Voidy Installer
 ------------------------------------------------------------------------------------------
 "
 
@@ -89,7 +94,7 @@ fi
 
 echo -ne "
 ------------------------------------------------------------------------------------------
-                                    Arch installation
+                                    Voidy installation
 ------------------------------------------------------------------------------------------
 "
 
@@ -361,7 +366,7 @@ if [[  $TOTAL_MEM -lt 8000000 ]]; then
     # Put swap into the actual system, not into RAM disk, otherwise there is no point in it, it'll cache RAM into RAM. So, /mnt/ everything.
     mkdir -p /mnt/opt/swap # make a dir that we can apply NOCOW to to make it btrfs-friendly.
     chattr +C /mnt/opt/swap # apply NOCOW, btrfs needs that.
-    dd if=/dev/zero of=/mnt/opt/swap/swapfile bs=1M count=2048 status=progress
+    dd if=/dev/zero of=/mnt/opt/swap/swapfile bs=1M count=8192 status=progress
     chmod 600 /mnt/opt/swap/swapfile # set permissions.
     chown root /mnt/opt/swap/swapfile
     mkswap /mnt/opt/swap/swapfile
@@ -372,15 +377,13 @@ fi
 
 echo -ne "
 ------------------------------------------------------------------------------------------
-                         Arch-chrooting Into The New Installation
+                            chrooting Into The New Installation
 ------------------------------------------------------------------------------------------
 "
 # Copy all configuration files
 echo "Copying configuration files..."
 cp -fr /root/.build /root/.dotfiles /root/documents /root/pictures /root/.postinstall.sh /root/.env /mnt/root && echo "Copied successfully"
 
-# Wifi configuration
-mkdir -p /mnt/var/lib/iwd
-cp -fvr /var/lib/iwd/DJAWEB_E9426.psk /mnt/var/lib/iwd/DJAWEB_E9426.psk
+# Redirect to the postinstall script
 ( arch-chroot /mnt /root/.postinstall.sh ) |& tee postinstall.log
 cp postinstall.log /mnt/root
