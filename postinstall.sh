@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-source /root/.env
+source .env
 
 # Logo
 clear

@@ -1,2 +1,3 @@
 - [x] Add necessary files.
-- [ ] Add a base install.sh script.
+- [x] Add a base install.sh script.
+- [ ] Update to xbps (void linux) specific commands.
