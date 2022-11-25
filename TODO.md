@@ -1,3 +1,4 @@
 - [x] Add necessary files.
 - [x] Add a base install.sh script.
 - [ ] Update to xbps (void linux) specific commands.
+- [ ] Fix partition options for virtual machines.

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # Set a bold custom terminus font
-xbps-install -S terminus-font
-setfont ter-v32b
+xbps-install -Syu terminus-font
+# setfont ter-v32b
 
 ################################################
 #                                              #
