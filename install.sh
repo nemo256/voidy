@@ -138,8 +138,8 @@ echo -ne "
 "
 # Copy all configuration files
 echo "Copying configuration files..."
-# cp -fr /root/.build /root/.dotfiles /root/documents /root/pictures /root/.postinstall.sh /root/.env /mnt/root && echo "Copied successfully"
+cp -fr /root/voidy/postinstall.sh /root/voidy/.env /mnt/root && echo "Copied successfully"
 
 # Redirect to the postinstall script
-( chroot /mnt postinstall.sh ) |& tee postinstall.log
+( chroot /mnt /root/voidy/postinstall.sh ) |& tee postinstall.log
 cp postinstall.log /mnt/root
