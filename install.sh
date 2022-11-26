@@ -161,5 +161,5 @@ cp /etc/resolv.conf /mnt/etc/
 cp -fr /root/voidy/postinstall.sh /root/voidy/.env /mnt/root && echo "Copied successfully"
 
 # Redirect to the postinstall script
-( chroot /mnt /root/voidy/postinstall.sh ) |& tee postinstall.log
+( chroot /mnt /root/postinstall.sh ) |& tee postinstall.log
 cp postinstall.log /mnt/root
