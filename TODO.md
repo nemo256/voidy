@@ -1,6 +1,6 @@
 - [x] Add necessary files.
 - [x] Add a base install.sh script.
 - [x] Fix partition options for virtual machines.
-- [ ] Finish seting up <install.sh>.
+- [x] Finish seting up <install.sh>.
 - [ ] Update post-installation finishing touches.
 - [ ] Update to xbps (void linux) specific commands.
