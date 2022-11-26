@@ -35,9 +35,13 @@ REPO=                 # main voidy repo.
 ARCH=                 # architecture <eg: x86_64, i686, arm...>
 ```
 
-### Make the scripts executable and execute it:
+### Make the scripts executable:
 ```
 $ chmod +x install.sh postinstall.sh
+```
+
+### Run the installation: 
+```
 $ ./install.sh
 ```
 
