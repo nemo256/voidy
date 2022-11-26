@@ -105,7 +105,7 @@ mkdir -p /mnt/var/db/xbps/keys
 cp /var/db/xbps/keys/* /mnt/var/db/xbps/keys/
 
 # Start the installation
-XBPS_ARCH=$ARCH xbps-install -S -r /mnt -R "$REPO" base-system
+XBPS_ARCH=$ARCH xbps-install -Sy -r /mnt -R "$REPO" base-system
 
 echo -ne "
 ------------------------------------------------------------------------------------------
