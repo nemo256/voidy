@@ -65,10 +65,10 @@ sgdisk -n 1::+128M --typecode=1:af00 --change-name=1:'Boot Loader' ${DISK} # par
 sgdisk -n 2::+256M --typecode=2:8300 --change-name=2:'Boot' ${DISK} # partition 2 (Boot Partition)
 sgdisk -n 3::-0 --typecode=3:8300 --change-name=3:'Root' ${DISK} # partition 3 (Root), default start, remaining space
 
-if [[ ! -d "/sys/firmware/efi" ]]; then # checking for bios system
+if [[ ! -d "/sys/firmware/efi" ]]; then
     sgdisk -A 1:set:2 ${DISK}
 fi
-partprobe ${DISK} # reread partition table to ensure it is correct
+partprobe ${DISK}
 
 # Make filesystems
 echo -ne "
@@ -79,7 +79,7 @@ echo -ne "
 partition2=${DISK}2
 partition3=${DISK}3
 
-mkfs.fat -F32 ${partition2}
+mkfs.vfat ${partition2}
 mkfs.ext4 -L Root ${partition3}
 mount -t ext4 ${partition3} /mnt
 
