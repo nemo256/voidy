@@ -100,7 +100,7 @@ echo -ne "
                                    Voidy Installation 
 ------------------------------------------------------------------------------------------
 "
-# Copy the RSA keys from the installation medium to the target root directory.
+# Copy the RSA keys from the installation medium to the target root directory
 mkdir -p /mnt/var/db/xbps/keys
 cp /var/db/xbps/keys/* /mnt/var/db/xbps/keys/
 
@@ -150,10 +150,17 @@ echo -ne "
                             chrooting Into The New Installation
 ------------------------------------------------------------------------------------------
 "
+# Mount the pseudo-filesystems needed for a chroot
+mount --rbind /sys /mnt/sys && mount --make-rslave /mnt/sys
+mount --rbind /dev /mnt/dev && mount --make-rslave /mnt/dev
+mount --rbind /proc /mnt/proc && mount --make-rslave /mnt/proc
+
 # Copy all configuration files
 echo "Copying configuration files..."
+cp /etc/resolv.conf /mnt/etc/
 cp -fr /root/voidy/postinstall.sh /root/voidy/.env /mnt/root && echo "Copied successfully"
 
 # Redirect to the postinstall script
-( chroot /mnt /root/voidy/postinstall.sh ) |& tee postinstall.log
-cp postinstall.log /mnt/root
+# ( chroot /mnt /root/voidy/postinstall.sh ) |& tee postinstall.log
+# cp postinstall.log /mnt/root
+PS1='(chroot) # ' chroot /mnt/ /bin/bash
