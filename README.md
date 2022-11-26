@@ -41,7 +41,7 @@ $ chmod +x install.sh postinstall.sh
 ```
 
 ### Run the installation: 
-```bash
+```
 $ ./install.sh
 ```
 
