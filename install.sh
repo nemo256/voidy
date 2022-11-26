@@ -20,6 +20,8 @@ xbps-install -Syu terminus-font gptfdisk
 # FS=<Filesystem eg: ext4, btrfs...>
 # TIMEZONE=<eg: Europe/Paris>
 # KEYMAP=<eg: us,uk,es...>
+# REPO=<https://repo-default.voidlinux.org/current>
+# ARCH=<x86_64, i686, arm...>
 
 source .env
 
@@ -92,6 +94,18 @@ if ! grep -qs '/mnt' /proc/mounts; then
     echo "Rebooting in 1 Second ..." && sleep 1
     reboot now
 fi
+
+echo -ne "
+------------------------------------------------------------------------------------------
+                                   Voidy Installation 
+------------------------------------------------------------------------------------------
+"
+# Copy the RSA keys from the installation medium to the target root directory.
+mkdir -p /mnt/var/db/xbps/keys
+cp /var/db/xbps/keys/* /mnt/var/db/xbps/keys/
+
+# Start the installation
+xbps-install -S -r /mnt -R "$REPO" base-system
 
 echo -ne "
 ------------------------------------------------------------------------------------------
