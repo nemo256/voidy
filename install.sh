@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Set a bold custom terminus font
-xbps-install -Syu terminus-font gptfdisk cfdisk
+xbps-install -Syu terminus-font gptfdisk parted
 # setfont ter-v32b
 
 ################################################
