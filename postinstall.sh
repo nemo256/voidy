@@ -26,15 +26,6 @@ echo -ne "
 
 echo -ne "
 ------------------------------------------------------------------------------------------
-                                     Network Setup
-------------------------------------------------------------------------------------------
-"
-# cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
-# reflector -a 48 -c France,Germany -f 5 -l 20 --sort rate --save /etc/pacman.d/mirrorlist
-# mkdir /mnt &>/dev/null # hiding error message if any
-
-echo -ne "
-------------------------------------------------------------------------------------------
                                 Setup Language And Locale
 ------------------------------------------------------------------------------------------
 "
@@ -52,10 +43,8 @@ localectl --no-ask-password set-keymap ${KEYMAP}
 # sed -i 's/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /etc/sudoers
 
 # Add parallel downloading
-sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 
 # Enable multilib
-sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 
 echo -ne "
 ------------------------------------------------------------------------------------------
@@ -75,40 +64,40 @@ echo -ne "
 ------------------------------------------------------------------------------------------
 "
 # Installing GRUB
-if [[ -d "/sys/firmware/efi" ]]; then
-    grub-install --efi-directory=/boot ${DISK} --recheck --force
-fi
+# if [[ -d "/sys/firmware/efi" ]]; then
+#     grub-install --efi-directory=/boot ${DISK} --recheck --force
+# fi
 
 # Optimize grub for macbook air and skip through it (I don't multiboot)
-sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="[^"]*/& rootflags=data=writeback libata.force=1:noncq/' /etc/default/grub
-sed -i 's/^GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/' /etc/default/grub
-sed -i 's/^#GRUB_DISABLE_SUBMENU=y/GRUB_DISABLE_SUBMENU=y/' /etc/default/grub
+# sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="[^"]*/& rootflags=data=writeback libata.force=1:noncq/' /etc/default/grub
+# sed -i 's/^GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/' /etc/default/grub
+# sed -i 's/^#GRUB_DISABLE_SUBMENU=y/GRUB_DISABLE_SUBMENU=y/' /etc/default/grub
 
 # Updating grub
-echo -e "Updating grub..."
-grub-mkconfig -o /boot/grub/grub.cfg
-echo -e "All set!"
+# echo -e "Updating grub..."
+# grub-mkconfig -o /boot/grub/grub.cfg
+# echo -e "All set!"
 
 echo -ne "
 ------------------------------------------------------------------------------------------
                                Managing Essential Services
 ------------------------------------------------------------------------------------------
 "
-systemctl disable --now transmission.service
-echo "--> Transmission disabled"
-systemctl disable --now dhcpcd.service
-echo "  DHCP disabled"
-systemctl enable --now NetworkManager.service
-echo "--> NetworkManager enabled"
+# systemctl disable --now transmission.service
+# echo "--> Transmission disabled"
+# systemctl disable --now dhcpcd.service
+# echo "  DHCP disabled"
+# systemctl enable --now NetworkManager.service
+# echo "--> NetworkManager enabled"
 
 echo -ne "
 ------------------------------------------------------------------------------------------
                               Changing Default Console Font
 ------------------------------------------------------------------------------------------
 "
-echo -ne 'KEYMAP="us"
-FONT="ter-v32b"
-' > /etc/vconsole.conf
+# echo -ne 'KEYMAP="us"
+# FONT="ter-v32b"
+# ' > /etc/vconsole.conf
 
 echo -ne "
 ------------------------------------------------------------------------------------------
@@ -116,7 +105,7 @@ echo -ne "
 ------------------------------------------------------------------------------------------
 "
 # Adding the credentials file
-echo -ne "https://nemo256:${TOKEN}@github.com" > ${HOME}/.git-credentials
+# echo -ne "https://nemo256:${TOKEN}@github.com" > ${HOME}/.git-credentials
 
 echo -ne "
 ------------------------------------------------------------------------------------------
@@ -124,27 +113,27 @@ echo -ne "
 ------------------------------------------------------------------------------------------
 "
 # Change directory to where the build files are
-cd /root/.build
+# cd /root/.build
 # Building and installing using make
-cd dwm && make clean install
-cd ../st && make clean install
-cd ../dmenu && make clean install
-cd ../slock && make clean install
-cd ../slstatus && make clean install
-cd ../ani-cli && chmod +x ani-cli && cp ani-cli /usr/local/bin/ani-cli
-cd ../tty-clock && make && make install
-cd ../grabc && make && make install
-cd ../tremc && make install
-yarn global add @aweary/alder
-yarn global add weather-cli
+# cd dwm && make clean install
+# cd ../st && make clean install
+# cd ../dmenu && make clean install
+# cd ../slock && make clean install
+# cd ../slstatus && make clean install
+# cd ../ani-cli && chmod +x ani-cli && cp ani-cli /usr/local/bin/ani-cli
+# cd ../tty-clock && make && make install
+# cd ../grabc && make && make install
+# cd ../tremc && make install
+# yarn global add @aweary/alder
+# yarn global add weather-cli
 
 echo -ne "
 ------------------------------------------------------------------------------------------
                                  Restoring Home Directory
 ------------------------------------------------------------------------------------------
 "
-cd $HOME && mkdir Downloads Videos Music Work
-cd $HOME
+# cd $HOME && mkdir Downloads Videos Music Work
+# cd $HOME
 
 echo -ne "
 ------------------------------------------------------------------------------------------
@@ -152,46 +141,46 @@ echo -ne "
 ------------------------------------------------------------------------------------------
 "
 # Removing default files
-rm -fvr ${HOME}/.bash*
-rm -fvr ${HOME}/.gitconfig
-rm -fvr ${HOME}/.config/*
+# rm -fvr ${HOME}/.bash*
+# rm -fvr ${HOME}/.gitconfig
+# rm -fvr ${HOME}/.config/*
 
 # Dotfiles directory
-cd $HOME/.dotfiles
+# cd $HOME/.dotfiles
 
 # Stowing configuration files
-stow abook
-stow alsa
-stow bin
-stow bash
-stow dunst
-stow git
-stow gtk-2.0
-stow gtk-3.0
-stow htop
-stow irssi
-stow mbsync
-stow mimeapps
-stow mpd
-stow mpv
-stow mutt
-stow ncmpcpp
-stow neofetch
-stow newsboat
-stow notmuch
-stow nvim
-stow picom
-stow ranger
-stow sxiv
-stow transmission-daemon
-stow tremc
-stow weather-cli-nodejs
-stow xinit
-stow yarn
-stow zathura
+# stow abook
+# stow alsa
+# stow bin
+# stow bash
+# stow dunst
+# stow git
+# stow gtk-2.0
+# stow gtk-3.0
+# stow htop
+# stow irssi
+# stow mbsync
+# stow mimeapps
+# stow mpd
+# stow mpv
+# stow mutt
+# stow ncmpcpp
+# stow neofetch
+# stow newsboat
+# stow notmuch
+# stow nvim
+# stow picom
+# stow ranger
+# stow sxiv
+# stow transmission-daemon
+# stow tremc
+# stow weather-cli-nodejs
+# stow xinit
+# stow yarn
+# stow zathura
 
 # Making bin files executable
-chmod -R 755 $HOME/bin
+# chmod -R 755 $HOME/bin
 
 echo -ne "
 ------------------------------------------------------------------------------------------
@@ -199,11 +188,11 @@ echo -ne "
 ------------------------------------------------------------------------------------------
 "
 # Adding vim-plug
-curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
+#     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Installing neovim plugins
-nvim -c 'PlugInstall | q! | q!'
+# nvim -c 'PlugInstall | q! | q!'
 
 # chmod +x $HOME/.config/nvim/autoload/plugged/fzf/install
 
@@ -213,12 +202,12 @@ echo -ne "
 ------------------------------------------------------------------------------------------
 "
 # Adding devicons to ranger
-git clone https://github.com/alexanderjeurissen/ranger_devicons \
-  $HOME/.config/ranger/plugins/ranger_devicons
+# git clone https://github.com/alexanderjeurissen/ranger_devicons \
+#   $HOME/.config/ranger/plugins/ranger_devicons
 
-cd $HOME/.config/ranger/plugins/ranger_devicons/
-python -m devicons
-cd $HOME
+# cd $HOME/.config/ranger/plugins/ranger_devicons/
+# python -m devicons
+# cd $HOME
 
 echo -ne "
 ------------------------------------------------------------------------------------------
@@ -226,15 +215,15 @@ echo -ne "
 ------------------------------------------------------------------------------------------
 "
 # To generate config folder
-#firefox
+# firefox
 
 # Saving path to prefs.js file
-#prefs=$(find $HOME/.mozilla/ -name '*prefs.js')
+# prefs=$(find $HOME/.mozilla/ -name '*prefs.js')
 
 # Adding magnet link support
-#echo -ne '
-#user_pref("network.protocol-handler.expose.magnet", false);
-#' >> $prefs
+# echo -ne '
+# user_pref("network.protocol-handler.expose.magnet", false);
+# ' >> $prefs
 
 echo -ne "
 ------------------------------------------------------------------------------------------
@@ -257,12 +246,12 @@ echo -ne "
 ------------------------------------------------------------------------------------------
 "
 # Adding TearFree option
-echo -ne 'Section "Device"
-  Identifier "Intel Graphics"
-  Driver "intel"
-  Option "TearFree" "true"
-EndSection
-' > /etc/X11/xorg.conf.d/20-intel.conf
+# echo -ne 'Section "Device"
+#   Identifier "Intel Graphics"
+#   Driver "intel"
+#   Option "TearFree" "true"
+# EndSection
+# ' > /etc/X11/xorg.conf.d/20-intel.conf
 
 echo -ne "
 ------------------------------------------------------------------------------------------
@@ -270,19 +259,19 @@ echo -ne "
 ------------------------------------------------------------------------------------------
 "
 # Adding slock service
-echo -ne '[Unit]
-Description=Lock X session using slock for user %i
-Before=sleep.target
+# echo -ne '[Unit]
+# Description=Lock X session using slock for user %i
+# Before=sleep.target
 
-[Service]
-User=%i
-Environment=DISPLAY=:0
-ExecStartPre=/usr/bin/xset dpms force suspend
-ExecStart=/usr/local/bin/slock
+# [Service]
+# User=%i
+# Environment=DISPLAY=:0
+# ExecStartPre=/usr/bin/xset dpms force suspend
+# ExecStart=/usr/local/bin/slock
 
-[Install]
-WantedBy=sleep.target
-' > /etc/systemd/system/slock@.service
+# [Install]
+# WantedBy=sleep.target
+# ' > /etc/systemd/system/slock@.service
 
 echo -ne "
 ------------------------------------------------------------------------------------------
@@ -290,18 +279,18 @@ echo -ne "
 ------------------------------------------------------------------------------------------
 "
 # Touchpad configuration
-echo -ne 'Section "InputClass"
-    Identifier "libinput touchpad catchall"
-    MatchIsTouchpad "on"
-    MatchDevicePath "/dev/input/event*"
-    Option "Tapping" "True"
-    Option "TappingDrag" "True"
-    Option "ScrollMethod" "Twofinger"
-    Option "NaturalScrolling" "False"
-    Option "DisableWhileTyping" "False"
-    Driver "libinput"
-EndSection
-' > /etc/X11/xorg.conf.d/40-libinput.conf
+# echo -ne 'Section "InputClass"
+#     Identifier "libinput touchpad catchall"
+#     MatchIsTouchpad "on"
+#     MatchDevicePath "/dev/input/event*"
+#     Option "Tapping" "True"
+#     Option "TappingDrag" "True"
+#     Option "ScrollMethod" "Twofinger"
+#     Option "NaturalScrolling" "False"
+#     Option "DisableWhileTyping" "False"
+#     Driver "libinput"
+# EndSection
+# ' > /etc/X11/xorg.conf.d/40-libinput.conf
 
 echo -ne "
 ------------------------------------------------------------------------------------------
@@ -309,8 +298,8 @@ echo -ne "
 ------------------------------------------------------------------------------------------
 "
 # Enabling slock to lock screen on suspend / sleep
-systemctl enable slock@$(whoami).service
-echo "  Slock enabled!"
+# systemctl enable slock@$(whoami).service
+# echo "  Slock enabled!"
 
 echo -ne "
 ------------------------------------------------------------------------------------------
@@ -318,13 +307,13 @@ echo -ne "
 ------------------------------------------------------------------------------------------
 "
 # Remove no password sudo rights
-sed -i 's/^%wheel ALL=(ALL) NOPASSWD: ALL/# %wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
-sed -i 's/^%wheel ALL=(ALL:ALL) NOPASSWD: ALL/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /etc/sudoers
+# sed -i 's/^%wheel ALL=(ALL) NOPASSWD: ALL/# %wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
+# sed -i 's/^%wheel ALL=(ALL:ALL) NOPASSWD: ALL/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /etc/sudoers
 # Add sudo rights
-sed -i 's/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
-sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
+# sed -i 's/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
+# sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
-rm -fvr $HOME/.postinstall.sh $HOME/.env
+# rm -fvr $HOME/.postinstall.sh $HOME/.env
 
 echo -ne "
 ------------------------------------------------------------------------------------------
