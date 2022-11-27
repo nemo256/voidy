@@ -2,7 +2,7 @@
 
 # Set a bold custom terminus font
 xbps-install -Syu terminus-font gptfdisk
-setfont ter-v32b
+# setfont ter-v32b
 
 ################################################
 #                                              #
