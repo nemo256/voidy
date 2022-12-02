@@ -54,9 +54,9 @@ echo -ne "
 # useradd -m -G wheel,libvirt -s $SHELL $USERNAME 
 # echo "$USERNAME created, home directory created, added to wheel and libvirt group, default shell set to /bin/bash"
 
-pwconv
-echo "${USERNAME}:${PASSWORD}" | chpasswd
-echo "${HOSTNAME}" > /etc/hostname
+# pwconv
+# echo "${USERNAME}:${PASSWORD}" | chpasswd
+# echo "${HOSTNAME}" > /etc/hostname
 
 echo -ne "
 ------------------------------------------------------------------------------------------
