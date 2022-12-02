@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-# source .env
+source .env
 
 # Logo
 clear
@@ -29,8 +29,8 @@ echo -ne "
                                 Setup Language And Locale
 ------------------------------------------------------------------------------------------
 "
-# sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
-# locale-gen
+sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/default/libc-locales
+xbps-reconfigure -fv glibc-locales 
 # timedatectl --no-ask-password set-timezone ${TIMEZONE}
 # timedatectl --no-ask-password set-ntp 1
 # localectl --no-ask-password set-locale LANG="en_US.UTF-8" LC_TIME="en_US.UTF-8"
