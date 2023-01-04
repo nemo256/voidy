@@ -59,7 +59,7 @@ chmod +x install.sh postinstall.sh
 ```
 
 ## Credits 🤝
-- Credits go to the developers of [archiso](https://github.com/archlinux/archiso).
+- Credits go to the developers of [void-linux](https://voidlinux.org/).
 
 ## License 📑
 - Please read [voidy/LICENSE](https://github.com/nemo256/voidy/blob/master/LICENSE)
