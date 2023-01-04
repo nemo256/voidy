@@ -1,16 +1,29 @@
-# Voidy
-A custom (personal) void linux installation script.
+<div align="center">
 
+# `Voidy`
+
+<h3>
+  A custom (personal) void linux installation script.
+</h3>
+
+<!-- Badges -->
+![GitHub Repo stars](https://img.shields.io/github/stars/nemo256/voidy?style=for-the-badge)
+![Maintenance](https://shields.io/maintenance/yes/2022?style=for-the-badge)
+![License](https://shields.io/github/license/nemo256/voidy?style=for-the-badge)
+
+<!-- Demo image -->
 ![Demo](demo.gif)
+
+</div>
 
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
-* [Setup](#setup)
-* [License](#license)
-* [Credits](#credits)
+* [Setup ⚙️](#setup)
+* [Credits 🤝](#credits)
+* [License 📑](#license)
 
-## Setup
+## Setup ⚙️
 
 ### Download the project:
 ```
@@ -45,10 +58,8 @@ $ chmod +x install.sh postinstall.sh
 $ ./install.sh
 ```
 
-## License
-- Please read voidy/LICENSE.
-- If you're too lazy to read, do anything you want with this project and don't forget to give credits to me, and the developers of [voidlinux](https://voidlinux.org/).
+## Credits 🤝
+- Credits go to the developers of [archiso](https://github.com/archlinux/archiso).
 
-## Credits
-- Credits go to the developers of [voidlinux](https://voidlinux.org/).
-
+## License 📑
+- Please read [voidy/LICENSE](https://github.com/nemo256/voidy/blob/master/LICENSE)
