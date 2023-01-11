@@ -27,7 +27,7 @@
 
 ### Download the project:
 ```shell
-xbps-install -S git gnupg nano
+xbps-install -S git gnupg
 git clone https://github.com/nemo256/voidy
 cd voidy
 ```
