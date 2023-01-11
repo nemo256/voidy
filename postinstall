@@ -31,20 +31,6 @@ echo -ne "
 "
 sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/default/libc-locales
 xbps-reconfigure -fv glibc-locales 
-# timedatectl --no-ask-password set-timezone ${TIMEZONE}
-# timedatectl --no-ask-password set-ntp 1
-# localectl --no-ask-password set-locale LANG="en_US.UTF-8" LC_TIME="en_US.UTF-8"
-# ln -s /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
-# Set keymaps
-# localectl --no-ask-password set-keymap ${KEYMAP}
-
-# Add sudo no password rights
-# sed -i 's/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
-# sed -i 's/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /etc/sudoers
-
-# Add parallel downloading
-
-# Enable multilib
 
 echo -ne "
 ------------------------------------------------------------------------------------------
@@ -65,7 +51,7 @@ echo -ne "
 "
 # Installing GRUB
 if [[ -d "/sys/firmware/efi" ]]; then
-  grub-install --target=x86_64-efi --efi-directory=/boot ${DISK} --recheck --force --bootloader-id="Void"
+  grub-install --efi-directory=/boot ${DISK} --bootloader-id="Void" --recheck --force
 fi
 
 # Optimize grub for macbook air and skip through it (I don't multiboot)
