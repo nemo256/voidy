@@ -51,7 +51,9 @@ echo -ne "
 "
 # Installing GRUB
 if [[ -d "/sys/firmware/efi" ]]; then
-  grub-install --efi-directory=/boot ${DISK} --bootloader-id="Void" --recheck --force
+  # For VM
+  grub-install --efi-directory=/boot ${DISK} --target=i386-pc --bootloader-id="Void" --recheck --force
+  # grub-install --efi-directory=/boot ${DISK} --bootloader-id="Void" --recheck --force
 fi
 
 # Optimize grub for macbook air and skip through it (I don't multiboot)
