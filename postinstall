@@ -43,12 +43,9 @@ echo -ne "
                                      Adding User
 ------------------------------------------------------------------------------------------
 "
-# useradd -m -G wheel,libvirt -s $SHELL $USERNAME 
-# echo "$USERNAME created, home directory created, added to wheel and libvirt group, default shell set to /bin/bash"
-
-# pwconv
-# echo "${USERNAME}:${PASSWORD}" | chpasswd
-# echo "${HOSTNAME}" > /etc/hostname
+pwconv
+echo "${USERNAME}:${PASSWORD}" | chpasswd
+echo "${HOSTNAME}" > /etc/hostname
 
 echo -ne "
 ------------------------------------------------------------------------------------------
@@ -57,8 +54,6 @@ echo -ne "
 "
 # Installing GRUB
 if [[ -d "/sys/firmware/efi" ]]; then
-  # For VM
-  # grub-install --efi-directory=/boot ${DISK} --target=i386-pc --bootloader-id="Void" --recheck --force
   grub-install --efi-directory=/boot ${DISK} --bootloader-id="Void" --recheck --force
 fi
 
@@ -77,12 +72,6 @@ echo -ne "
                                Managing Essential Services
 ------------------------------------------------------------------------------------------
 "
-# systemctl disable --now transmission.service
-# echo "--> Transmission disabled"
-# systemctl disable --now dhcpcd.service
-# echo "  DHCP disabled"
-# systemctl enable --now NetworkManager.service
-# echo "--> NetworkManager enabled"
 
 echo -ne "
 ------------------------------------------------------------------------------------------
