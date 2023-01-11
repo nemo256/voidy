@@ -50,12 +50,12 @@ ARCH=                 # architecture <eg: x86_64, i686, arm...>
 
 ### Make the scripts executable:
 ```shell
-chmod +x install.sh postinstall.sh
+chmod +x install postinstall
 ```
 
 ### Run the installation: 
 ```shell
-./install.sh
+./install
 ```
 
 ## Credits 🤝
