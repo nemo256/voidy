@@ -65,7 +65,7 @@ echo -ne "
 "
 # Installing GRUB
 if [[ -d "/sys/firmware/efi" ]]; then
-    grub-install --efi-directory=/boot ${DISK} --recheck --force
+  grub-install --target=x86_64-efi --efi-directory=/boot ${DISK} --recheck --force --bootloader-id="Void"
 fi
 
 # Optimize grub for macbook air and skip through it (I don't multiboot)
