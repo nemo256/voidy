@@ -123,12 +123,12 @@ echo -ne "
                                  Adding Swap Memory (8GB)
 ------------------------------------------------------------------------------------------
 "
-dd if=/dev/zero of=/mnt/swapfile bs=1M count=4096 status=progress
-chmod 600 /mnt/swapfile
-chown root /mnt/swapfile
-mkswap /mnt/swapfile
-swapon /mnt/swapfile
-echo "/swapfile	none	swap	sw	0	0" >> /mnt/etc/fstab
+# dd if=/dev/zero of=/mnt/swapfile bs=1M count=4096 status=progress
+# chmod 600 /mnt/swapfile
+# chown root /mnt/swapfile
+# mkswap /mnt/swapfile
+# swapon /mnt/swapfile
+# echo "/swapfile	none	swap	sw	0	0" >> /mnt/etc/fstab
 
 echo -ne "
 ------------------------------------------------------------------------------------------
