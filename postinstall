@@ -87,7 +87,7 @@ echo -ne "
                                    Github Configuration      
 ------------------------------------------------------------------------------------------
 "
-# Adding the credentials file
+# Adding the .git-credentials file
 echo -ne "https://nemo256:${TOKEN}@github.com" > ${HOME}/.git-credentials
 
 echo -ne "
@@ -169,14 +169,6 @@ echo -ne "
                                    Neovim Configuration
 ------------------------------------------------------------------------------------------
 "
-# Adding vim-plug
-# curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
-#     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-# Installing neovim plugins
-# nvim -c 'PlugInstall | q! | q!'
-
-# chmod +x $HOME/.config/nvim/autoload/plugged/fzf/install
 
 echo -ne "
 ------------------------------------------------------------------------------------------
