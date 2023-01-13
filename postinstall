@@ -115,8 +115,7 @@ echo -ne "
                                  Restoring Home Directory
 ------------------------------------------------------------------------------------------
 "
-# cd $HOME && mkdir Downloads Videos Music Work
-# cd $HOME
+cd $HOME && mkdir Downloads Videos Music Work
 
 echo -ne "
 ------------------------------------------------------------------------------------------
@@ -280,6 +279,8 @@ echo -ne "
                                Re-enabling Essential Services
 ------------------------------------------------------------------------------------------
 "
+# Enabling dhcp daemon
+ln -sf /etc/sv/dhcpcd /var/service
 # Enabling slock to lock screen on suspend / sleep
 # systemctl enable slock@$(whoami).service
 # echo "  Slock enabled!"

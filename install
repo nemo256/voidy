@@ -109,7 +109,7 @@ XBPS_ARCH=$ARCH xbps-install -Sy -r /mnt -R "$REPO" base-system
 
 echo -ne "
 ------------------------------------------------------------------------------------------
-                                   Generating FsTab
+                                   Generating fstab
 ------------------------------------------------------------------------------------------
 "
 cp /proc/mounts /mnt/etc/fstab
