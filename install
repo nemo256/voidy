@@ -91,7 +91,7 @@ echo -ne "
 mkdir -p /mnt/var/db/xbps/keys
 cp /var/db/xbps/keys/* /mnt/var/db/xbps/keys/
 
-XBPS_ARCH=$ARCH xbps-install -Sy -r /mnt -R "$REPO" base-system
+XBPS_ARCH=$ARCH xbps-install -Sy -r /mnt -R "$REPO" base-system linux-lts linux-lts-headers
 
 echo -ne "
 ------------------------------------------------------------------------------------------
