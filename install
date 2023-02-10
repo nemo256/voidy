@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 xbps-install -Syu terminus-font gptfdisk parted
-setfont ter-v32b
+# setfont ter-v32b
 
 ################################################
 #                                              #
