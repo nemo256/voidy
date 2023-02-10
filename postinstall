@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
-
 source .env
 
-# Logo
 clear
 echo -ne "
 ------------------------------------------------------------------------------------------
@@ -52,12 +50,10 @@ echo -ne "
                                  Creating GRUB Boot Menu
 ------------------------------------------------------------------------------------------
 "
-# Installing GRUB
 if [[ -d "/sys/firmware/efi" ]]; then
   grub-install --efi-directory=/boot ${DISK} --bootloader-id="Void" --recheck --force
 fi
 
-# Optimize grub for macbook air and skip through it (I don't multiboot)
 sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="[^"]*/& rootflags=data=writeback libata.force=1:noncq acpi_osi=!Darwin/' /etc/default/grub
 sed -i 's/^GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/' /etc/default/grub
 sed -i 's/^#GRUB_DISABLE_SUBMENU=y/GRUB_DISABLE_SUBMENU=y/' /etc/default/grub
@@ -87,7 +83,6 @@ echo -ne "
                                    Github Configuration      
 ------------------------------------------------------------------------------------------
 "
-# Adding the .git-credentials file
 echo -ne "https://nemo256:${TOKEN}@github.com" > ${HOME}/.git-credentials
 
 echo -ne "
@@ -95,7 +90,6 @@ echo -ne "
                                 Installing Dwm, St, Dmenu...
 ------------------------------------------------------------------------------------------
 "
-# Change directory to where the build files are
 # cd /root/.build
 # Building and installing using make
 # cd dwm && make clean install
@@ -122,15 +116,12 @@ echo -ne "
                                 Stowing Configuration Files
 ------------------------------------------------------------------------------------------
 "
-# Removing default files
 # rm -fvr ${HOME}/.bash*
 # rm -fvr ${HOME}/.gitconfig
 # rm -fvr ${HOME}/.config/*
 
-# Dotfiles directory
 # cd $HOME/.dotfiles
 
-# Stowing configuration files
 # stow abook
 # stow alsa
 # stow bin
@@ -161,7 +152,6 @@ echo -ne "
 # stow yarn
 # stow zathura
 
-# Making bin files executable
 # chmod -R 755 $HOME/bin
 
 echo -ne "
@@ -175,7 +165,6 @@ echo -ne "
                                    Ranger Configuration
 ------------------------------------------------------------------------------------------
 "
-# Adding devicons to ranger
 # git clone https://github.com/alexanderjeurissen/ranger_devicons \
 #   $HOME/.config/ranger/plugins/ranger_devicons
 
@@ -188,13 +177,10 @@ echo -ne "
                                    Firefox Configuration
 ------------------------------------------------------------------------------------------
 "
-# To generate config folder
 # firefox
 
-# Saving path to prefs.js file
 # prefs=$(find $HOME/.mozilla/ -name '*prefs.js')
 
-# Adding magnet link support
 # echo -ne '
 # user_pref("network.protocol-handler.expose.magnet", false);
 # ' >> $prefs
@@ -204,14 +190,11 @@ echo -ne "
                                     Fonts Configuration
 ------------------------------------------------------------------------------------------
 "
-# Adding nerd font (Droid Sans Mono)
 # mkdir -p ${HOME}/.fonts
 # cd ${HOME}/.fonts && curl -fLo "Fira Code Bold Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Bold/complete/Fira%20Code%20Bold%20Nerd%20Font%20Complete.ttf
 
-# Update fonts
 # fc-cache -f -v
 
-# Return back to home directory
 # cd $HOME
 
 echo -ne "
@@ -219,7 +202,6 @@ echo -ne "
                                    Disabling Screen Tear
 ------------------------------------------------------------------------------------------
 "
-# Adding TearFree option
 # echo -ne 'Section "Device"
 #   Identifier "Intel Graphics"
 #   Driver "intel"
@@ -232,7 +214,6 @@ echo -ne "
                                     Slock Configuration
 ------------------------------------------------------------------------------------------
 "
-# Adding slock service
 # echo -ne '[Unit]
 # Description=Lock X session using slock for user %i
 # Before=sleep.target
@@ -252,7 +233,6 @@ echo -ne "
                                Updating Touchpad Configuration
 ------------------------------------------------------------------------------------------
 "
-# Touchpad configuration
 # echo -ne 'Section "InputClass"
 #     Identifier "libinput touchpad catchall"
 #     MatchIsTouchpad "on"
@@ -271,7 +251,6 @@ echo -ne "
                                Re-enabling Essential Services
 ------------------------------------------------------------------------------------------
 "
-# Enabling dhcp daemon
 ln -sf /etc/sv/dhcpcd /var/service
 # Enabling slock to lock screen on suspend / sleep
 # systemctl enable slock@$(whoami).service
@@ -282,7 +261,6 @@ echo -ne "
                                          Cleaning
 ------------------------------------------------------------------------------------------
 "
-# Remove no password sudo rights
 # sed -i 's/^%wheel ALL=(ALL) NOPASSWD: ALL/# %wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
 # sed -i 's/^%wheel ALL=(ALL:ALL) NOPASSWD: ALL/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /etc/sudoers
 # Add sudo rights
