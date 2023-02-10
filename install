@@ -58,13 +58,10 @@ umount -A --recursive /mnt
 sgdisk -Z ${DISK}
 sgdisk -a 2048 -o ${DISK}
 
-sgdisk -n 1::+128M --typecode=1:af00 --change-name=1:'Boot Loader' ${DISK}
-sgdisk -n 2::+256M --typecode=2:8300 --change-name=2:'Boot' ${DISK}
-sgdisk -n 3::-0 --typecode=3:8300 --change-name=3:'Root' ${DISK}
+sgdisk -n 1::+256M  --typecode=1:AF00 --change-name=1:'ESP'  ${DISK}
+# sgdisk -n 3::+4096M --typecode=3:8200 --change-name=3:'SWAP' ${DISK}
+sgdisk -n 2::-0     --typecode=2:8300 --change-name=2:'ROOT' ${DISK}
 
-if [[ ! -d "/sys/firmware/efi" ]]; then
-    sgdisk -A 1:set:2 ${DISK}
-fi
 partprobe ${DISK}
 
 echo -ne "
@@ -72,22 +69,18 @@ echo -ne "
                                   Creating Filesystems
 ------------------------------------------------------------------------------------------
 "
-partition2=${DISK}2
-partition3=${DISK}3
+mkfs.fat -F 32 ${DISK}1
+fatlabel ${DISK}1 ESP
+mkfs.ext4 -L ROOT ${DISK}2
+# mkswap -L SWAP ${DISK}3
 
-mkfs.vfat ${partition2}
-mkfs.ext4 -L Root ${partition3}
-mount -t ext4 ${partition3} /mnt
-
-mkdir /mnt/boot
-mount ${partition2} /mnt/boot/
+# swapon /dev/disk/by-label/SWAP
+mount /dev/disk/by-label/ROOT /mnt
+mkdir -p /mnt/boot/efi
+mount /dev/disk/by-label/ESP /mnt/boot/efi
 
 if ! grep -qs '/mnt' /proc/mounts; then
-    echo "Drive is not mounted, can not continue"
-    echo "Rebooting in 3 Seconds ..." && sleep 1
-    echo "Rebooting in 2 Seconds ..." && sleep 1
-    echo "Rebooting in 1 Second ..." && sleep 1
-    reboot now
+  (sleep 3 && reboot )
 fi
 
 echo -ne "
