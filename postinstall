@@ -41,9 +41,29 @@ echo -ne "
                                      Adding User
 ------------------------------------------------------------------------------------------
 "
-pwconv
+groupadd libvirt
+useradd -m -G wheel,libvirt -s /bin/bash --badname ${USERNAME}
+echo "root:${MASTER_PASSWORD}" | chpasswd
 echo "${USERNAME}:${PASSWORD}" | chpasswd
 echo "${HOSTNAME}" > /etc/hostname
+
+echo -ne "
+------------------------------------------------------------------------------------------
+                                  Installing packages
+------------------------------------------------------------------------------------------
+"
+if [[ ! -f "packages" ]]; then
+  echo "Error: packages file not found."
+  exit 1
+fi
+
+while read line
+do
+  if [[ $line == "" ]] || [[ $line == \#* ]]; then
+    continue
+  fi
+  pacman -S --noconfirm --needed "$line"
+done < packages
 
 echo -ne "
 ------------------------------------------------------------------------------------------
@@ -102,7 +122,7 @@ echo -ne "
                                  Restoring Home Directory
 ------------------------------------------------------------------------------------------
 "
-cd $HOME && mkdir Downloads Videos Music Work
+cd ${HOME} && mkdir Downloads Videos Music Work
 
 echo -ne "
 ------------------------------------------------------------------------------------------

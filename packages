@@ -1,0 +1,60 @@
+#######################
+#      Necessary      #
+#######################
+broadcom-wl-dkms
+fzf
+intel-ucode
+irssi
+less
+networkmanager
+networkmanager-dinit
+nmap
+rsync
+sudo
+neovim
+wireless-tools
+bluez
+bluez-utils
+brightnessctl
+dsniff
+dunst
+exa
+firefox
+git
+mpd
+mpv
+ncmpcpp
+neofetch
+newsboat
+nodejs
+noto-fonts
+picom
+pipewire
+python-pip
+ranger
+scrot
+stow
+sxiv
+terminus-font
+transmission-cli
+tree
+ttf-fira-code
+ttf-nerd-fonts-symbols-2048-em
+unrar
+unzip
+upower
+virtualbox-host-dkms
+webkit2gtk
+wget
+xclip
+xorg
+xorg-xinit
+yarn
+yt-dlp
+zathura
+zip
+# libva-intel-driver
+# libvdpau-va-gl
+# libva-utils
+# vulkan-intel
+# xf86-video-intel
