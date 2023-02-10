@@ -111,8 +111,8 @@ mount --rbind /proc /mnt/proc && mount --make-rslave /mnt/proc
 
 echo "Copying configuration files..."
 cp -fvr /etc/resolv.conf /mnt/etc/
-cp -fvr /root/voidy/postinstall /root/voidy/user /root/voidy/.env /mnt
+cp -fvr /root/voidy/postinstall /root/voidy/user /root/voidy/packages /root/voidy/.env /mnt
 
-( chroot /mnt /root/postinstall ) |& tee postinstall.log
+( chroot /mnt /postinstall ) |& tee postinstall.log
 ( chroot /mnt /usr/bin/runuser -u ${USERNAME} -- /user ) |& tee user.log
 cp -fvr postinstall.log user.log /mnt
