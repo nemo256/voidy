@@ -47,6 +47,9 @@ TIMEZONE=             # timezone like this <Continent/city> (eg: Europe/paris, A
 KEYMAP=               # keymap of the keyboard (eg: us, fr, es...)
 REPO=                 # main voidy repo. (eg: https://repo-default.voidlinux.org/current)
 ARCH=                 # architecture (eg: x86_64, i686, arm...)
+
+Use this command to generate encrypted passwords:
+openssl passwd -6 -salt 'salt' <password>
 ```
 
 ### Make the scripts executable:
