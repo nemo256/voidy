@@ -30,8 +30,8 @@ echo "LANG=en_US.UTF-8" > /etc/locale.conf
 sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/default/libc-locales
 xbps-reconfigure -fv glibc-locales 
 ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
-echo "export HARDWARECLOCK=localtime" > /etc/rc.conf
 sed -i 's/^#HARDWARECLOCK="UTC"/HARDWARECLOCK=localtime/' /etc/rc.conf
+sed -i 's/^#FONT="lat9w-16"/FONT="ter-v32b"/' /etc/rc.conf
 
 echo -ne "
 ------------------------------------------------------------------------------------------
@@ -75,7 +75,7 @@ echo -ne "
 "
 xbps-install -S -y git neovim grub-x86_64-efi void-repo-nonfree
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub
-# sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="[^"]*/& rootflags=data=writeback libata.force=1:noncq acpi_osi=!Darwin/' /etc/default/grub
+sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="[^"]*/& rootflags=data=writeback libata.force=1:noncq acpi_osi=!Darwin/' /etc/default/grub
 sed -i 's/^GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/' /etc/default/grub
 sed -i 's/^#GRUB_DISABLE_SUBMENU=y/GRUB_DISABLE_SUBMENU=y/' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -97,15 +97,6 @@ do
   fi
   xbps-install -S -y "$line"
 done < packages
-
-echo -ne "
-------------------------------------------------------------------------------------------
-                              Changing Default Console Font
-------------------------------------------------------------------------------------------
-"
-# echo -ne 'KEYMAP="us"
-# FONT="ter-v32b"
-# ' > /etc/vconsole.conf
 
 echo -ne "
 ------------------------------------------------------------------------------------------

@@ -59,7 +59,7 @@ sgdisk -Z ${DISK}
 sgdisk -a 2048 -o ${DISK}
 
 sgdisk -n 1::+256M  --typecode=1:AF00 --change-name=1:'ESP'  ${DISK}
-# sgdisk -n 3::+4096M --typecode=3:8200 --change-name=3:'SWAP' ${DISK}
+sgdisk -n 3::+4096M --typecode=3:8200 --change-name=3:'SWAP' ${DISK}
 sgdisk -n 2::-0     --typecode=2:8300 --change-name=2:'ROOT' ${DISK}
 
 partprobe ${DISK}
@@ -72,9 +72,9 @@ echo -ne "
 mkfs.fat -F 32 ${DISK}1
 fatlabel ${DISK}1 ESP
 mkfs.ext4 -L ROOT ${DISK}2
-# mkswap -L SWAP ${DISK}3
+mkswap -L SWAP ${DISK}3
 
-# swapon /dev/disk/by-label/SWAP
+swapon /dev/disk/by-label/SWAP
 mount /dev/disk/by-label/ROOT /mnt
 mkdir -p /mnt/boot/efi
 mount /dev/disk/by-label/ESP /mnt/boot/efi
