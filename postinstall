@@ -36,8 +36,8 @@ echo -ne "
 "
 groupadd libvirt
 useradd -m -G wheel,libvirt -s /bin/bash --badname ${USERNAME}
-usermod --password "${ENCRYPTED_MASTER_PASSWORD}" root
-usermod --password "${ENCRYPTED_PASSWORD}" ${USERNAME}
+usermod --password "${MASTER_PASSWORD}" root
+usermod --password "${PASSWORD}" ${USERNAME}
 echo "${HOSTNAME}" > /etc/hostname
 
 echo -ne "
