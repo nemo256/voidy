@@ -35,7 +35,8 @@ cd voidy
 ### Create or modify the <.env> file:
 ```shell
 USERNAME=             # your username (eg: foo)
-PASSWORD=             # your password (eg: bar)
+MASTER_PASSWORD=      # your root password (eg: bar)
+PASSWORD=             # your password (eg: baz)
 HOSTNAME=             # your hostname (eg: thinkpad)
 SHELL=                # preferred shell (eg: /bin/zsh)
 TOKEN=                # this is the github token (you can leave it empty)
@@ -44,8 +45,8 @@ MOUNT_OPTIONS=        # disk mount options (eg: "noatime,compress=zstd,ssd,commi
 FS=                   # filesystem type (eg: ext4, btrfs...)
 TIMEZONE=             # timezone like this <Continent/city> (eg: Europe/paris, America/chicago)
 KEYMAP=               # keymap of the keyboard (eg: us, fr, es...)
-REPO=                 # main voidy repo.
-ARCH=                 # architecture <eg: x86_64, i686, arm...>
+REPO=                 # main voidy repo. (eg: https://repo-default.voidlinux.org/current)
+ARCH=                 # architecture (eg: x86_64, i686, arm...)
 ```
 
 ### Make the scripts executable:
