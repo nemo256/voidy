@@ -29,6 +29,9 @@ echo -ne "
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/default/libc-locales
 xbps-reconfigure -fv glibc-locales 
+ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
+echo "export HARDWARECLOCK=localtime" > /etc/rc.conf
+sed -i 's/^#HARDWARECLOCK="UTC"/HARDWARECLOCK=localtime/' /etc/rc.conf
 
 echo -ne "
 ------------------------------------------------------------------------------------------

@@ -9,6 +9,7 @@ htop
 intel-ucode
 irssi
 less
+libspa-bluetooth
 libX11-devel
 libXft-devel
 libXinerama-devel
@@ -31,7 +32,7 @@ ncmpcpp
 neofetch
 newsboat
 nodejs
-noto-fonts-cjk
+noto-fonts
 picom
 pipewire
 pipewire-jack
@@ -46,7 +47,7 @@ terminus-font
 tremc
 tree
 font-fira-ttf
-# nerd-fonts
+nerd-fonts
 unrar
 unzip
 upower
