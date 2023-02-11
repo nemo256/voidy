@@ -84,49 +84,49 @@ echo -ne "
                                    Disabling Screen Tear
 ------------------------------------------------------------------------------------------
 "
-# echo -ne 'Section "Device"
-#   Identifier "Intel Graphics"
-#   Driver "intel"
-#   Option "TearFree" "true"
-# EndSection
-# ' > /etc/X11/xorg.conf.d/20-intel.conf
+echo -ne 'Section "Device"
+  Identifier "Intel Graphics"
+  Driver "intel"
+  Option "TearFree" "true"
+EndSection
+' > /etc/X11/xorg.conf.d/20-intel.conf
 
 echo -ne "
 ------------------------------------------------------------------------------------------
                                     Slock Configuration
 ------------------------------------------------------------------------------------------
 "
-# echo -ne '[Unit]
-# Description=Lock X session using slock for user %i
-# Before=sleep.target
+echo -ne '[Unit]
+Description=Lock X session using slock for user %i
+Before=sleep.target
 
-# [Service]
-# User=%i
-# Environment=DISPLAY=:0
-# ExecStartPre=/usr/bin/xset dpms force suspend
-# ExecStart=/usr/local/bin/slock
+[Service]
+User=%i
+Environment=DISPLAY=:0
+ExecStartPre=/usr/bin/xset dpms force suspend
+ExecStart=/usr/local/bin/slock
 
-# [Install]
-# WantedBy=sleep.target
-# ' > /etc/systemd/system/slock@.service
+[Install]
+WantedBy=sleep.target
+' > /etc/systemd/system/slock@.service
 
 echo -ne "
 ------------------------------------------------------------------------------------------
                                Updating Touchpad Configuration
 ------------------------------------------------------------------------------------------
 "
-# echo -ne 'Section "InputClass"
-#     Identifier "libinput touchpad catchall"
-#     MatchIsTouchpad "on"
-#     MatchDevicePath "/dev/input/event*"
-#     Option "Tapping" "True"
-#     Option "TappingDrag" "True"
-#     Option "ScrollMethod" "Twofinger"
-#     Option "NaturalScrolling" "False"
-#     Option "DisableWhileTyping" "False"
-#     Driver "libinput"
-# EndSection
-# ' > /etc/X11/xorg.conf.d/40-libinput.conf
+echo -ne 'Section "InputClass"
+    Identifier "libinput touchpad catchall"
+    MatchIsTouchpad "on"
+    MatchDevicePath "/dev/input/event*"
+    Option "Tapping" "True"
+    Option "TappingDrag" "True"
+    Option "ScrollMethod" "Twofinger"
+    Option "NaturalScrolling" "False"
+    Option "DisableWhileTyping" "False"
+    Driver "libinput"
+EndSection
+' > /etc/X11/xorg.conf.d/40-libinput.conf
 
 echo -ne "
 ------------------------------------------------------------------------------------------
@@ -134,9 +134,7 @@ echo -ne "
 ------------------------------------------------------------------------------------------
 "
 ln -sf /etc/sv/dhcpcd /var/service
-# Enabling slock to lock screen on suspend / sleep
 # systemctl enable slock@$(whoami).service
-# echo "  Slock enabled!"
 
 echo -ne "
 ------------------------------------------------------------------------------------------
