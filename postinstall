@@ -157,6 +157,8 @@ echo -ne "
 ------------------------------------------------------------------------------------------
 "
 ln -sf /etc/sv/dhcpcd /var/service
+ln -sf /etc/sv/NetworkManager /var/service
+ln -sf /etc/sv/pipewire /var/service
 # systemctl enable slock@$(whoami).service
 
 echo -ne "
