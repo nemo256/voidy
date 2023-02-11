@@ -74,7 +74,7 @@ fatlabel ${DISK}1 ESP
 mkfs.ext4 -L ROOT ${DISK}2
 mkswap -L SWAP ${DISK}3
 
-swapon /dev/disk/by-label/SWAP
+swapon /dev/disk/by-label/SWAP && sleep 2 && echo 'swap worked' && sleep 3
 mount /dev/disk/by-label/ROOT /mnt
 mkdir -p /mnt/boot/efi
 mount /dev/disk/by-label/ESP /mnt/boot/efi

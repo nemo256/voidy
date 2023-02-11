@@ -62,7 +62,7 @@ for UUID in $UUIDs; do
   elif [ "${TYPE}" == "ext4" ]; then
     echo "UUID=$UUID / ext4 defaults,discard 0 1" >> /etc/fstab
   elif [ "${TYPE}" == "swap" ]; then
-    echo "UUID=$UUID swap swap rw,noatime,discard 0 0" >> /etc/fstab
+    echo "UUID=$UUID none swap rw,noatime,discard 0 0" >> /etc/fstab
   fi
 done
 
