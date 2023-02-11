@@ -56,8 +56,6 @@ for UUID in $UUIDs; do
     echo "UUID=$UUID / ext4 defaults,discard 0 1" >> /etc/fstab
   elif [ "${TYPE}" == "swap" ]; then
     echo "UUID=$UUID swap swap rw,noatime,discard 0 0" >> /etc/fstab
-  else
-    echo "UUID=$UUID /mnt/disk-$UUID ${TYPE} defaults 0 0" >> /etc/fstab
   fi
 done
 
