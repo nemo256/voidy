@@ -53,6 +53,7 @@ upower
 virtualbox-ose-guest
 webkit2gtk
 wget
+wireless_tools
 xclip
 xorg
 xinit
