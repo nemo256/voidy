@@ -4,12 +4,16 @@
 base-devel
 broadcom-wl-dkms
 fzf
+harfbuzz-devel
+htop
 intel-ucode
 irssi
 less
 libX11-devel
 libXft-devel
 libXinerama-devel
+libXrandr-devel
+ncurses-devel
 NetworkManager
 nmap
 rsync
