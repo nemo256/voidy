@@ -78,18 +78,18 @@ echo -ne "
                                   Installing packages
 ------------------------------------------------------------------------------------------
 "
-# if [[ ! -f "packages" ]]; then
-#   echo "Error: packages file not found."
-#   exit 1
-# fi
-#
-# while read line
-# do
-#   if [[ $line == "" ]] || [[ $line == \#* ]]; then
-#     continue
-#   fi
-#   xbps-install -S -y "$line"
-# done < packages
+if [[ ! -f "packages" ]]; then
+  echo "Error: packages file not found."
+  exit 1
+fi
+
+while read line
+do
+  if [[ $line == "" ]] || [[ $line == \#* ]]; then
+    continue
+  fi
+  xbps-install -S -y "$line"
+done < packages
 
 echo -ne "
 ------------------------------------------------------------------------------------------
@@ -114,25 +114,6 @@ EndSection
 
 echo -ne "
 ------------------------------------------------------------------------------------------
-                                    Slock Configuration
-------------------------------------------------------------------------------------------
-"
-echo -ne '[Unit]
-Description=Lock X session using slock for user %i
-Before=sleep.target
-
-[Service]
-User=%i
-Environment=DISPLAY=:0
-ExecStartPre=/usr/bin/xset dpms force suspend
-ExecStart=/usr/local/bin/slock
-
-[Install]
-WantedBy=sleep.target
-' > /etc/systemd/system/slock@.service
-
-echo -ne "
-------------------------------------------------------------------------------------------
                                Updating Touchpad Configuration
 ------------------------------------------------------------------------------------------
 "
@@ -148,6 +129,25 @@ echo -ne 'Section "InputClass"
     Driver "libinput"
 EndSection
 ' > /etc/X11/xorg.conf.d/40-libinput.conf
+
+echo -ne "
+------------------------------------------------------------------------------------------
+                                    Slock Configuration
+------------------------------------------------------------------------------------------
+"
+# echo -ne '[Unit]
+# Description=Lock X session using slock for user %i
+# Before=sleep.target
+#
+# [Service]
+# User=%i
+# Environment=DISPLAY=:0
+# ExecStartPre=/usr/bin/xset dpms force suspend
+# ExecStart=/usr/local/bin/slock
+#
+# [Install]
+# WantedBy=sleep.target
+# ' > /etc/systemd/system/slock@.service
 
 echo -ne "
 ------------------------------------------------------------------------------------------
