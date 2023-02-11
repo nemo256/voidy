@@ -73,6 +73,7 @@ mkfs.fat -F 32 ${DISK}1
 fatlabel ${DISK}1 ESP
 mkfs.ext4 -L ROOT ${DISK}2
 mkswap -L SWAP ${DISK}3
+sleep 2
 
 swapon /dev/disk/by-label/SWAP && sleep 2 && echo 'swap worked' && sleep 3
 swapon -s
