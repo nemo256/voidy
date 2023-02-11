@@ -144,4 +144,3 @@ echo -ne "
 sed -ni "/^root/{a\
   ${USERNAME} ALL=(ALL:ALL) NOPASSWD: ALL
 p}" /etc/sudoers
-
