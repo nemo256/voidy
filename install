@@ -59,7 +59,6 @@ sgdisk -Z ${DISK}
 sgdisk -a 2048 -o ${DISK}
 
 sgdisk -n 1::+256M  --typecode=1:AF00 --change-name=1:'ESP'  ${DISK}
-sgdisk -n 3::+1024M --typecode=3:8200 --change-name=3:'SWAP' ${DISK}
 sgdisk -n 2::-0     --typecode=2:8300 --change-name=2:'ROOT' ${DISK}
 
 partprobe ${DISK}
@@ -72,15 +71,21 @@ echo -ne "
 mkfs.fat -F 32 ${DISK}1
 fatlabel ${DISK}1 ESP
 mkfs.ext4 -L ROOT ${DISK}2
-mkswap -L SWAP ${DISK}3
-sleep 2
 
-swapon /dev/disk/by-label/SWAP && sleep 2 && echo 'swap worked' && sleep 3
-swapon -s
-sleep 5
 mount /dev/disk/by-label/ROOT /mnt
 mkdir -p /mnt/boot/efi
 mount /dev/disk/by-label/ESP /mnt/boot/efi
+
+echo -ne "
+------------------------------------------------------------------------------------------
+                                Create a swap partition 4Gb
+------------------------------------------------------------------------------------------
+"
+dd if=/dev/zero of=/mnt/swapfile bs=1M count=1024 status=progress
+chmod 600 /mnt/swapfile
+chown root /mnt/swapfile
+mkswap /mnt/swapfile
+swapon /mnt/swapfile
 
 if ! grep -qs '/mnt' /proc/mounts; then
   (sleep 3 && reboot )
