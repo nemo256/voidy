@@ -59,7 +59,7 @@ sgdisk -Z ${DISK}
 sgdisk -a 2048 -o ${DISK}
 
 sgdisk -n 1::+256M  --typecode=1:AF00 --change-name=1:'ESP'  ${DISK}
-sgdisk -n 3::+4096M --typecode=3:8200 --change-name=3:'SWAP' ${DISK}
+sgdisk -n 3::+1024M --typecode=3:8200 --change-name=3:'SWAP' ${DISK}
 sgdisk -n 2::-0     --typecode=2:8300 --change-name=2:'ROOT' ${DISK}
 
 partprobe ${DISK}
