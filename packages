@@ -1,6 +1,7 @@
 #######################
 #      Necessary      #
 #######################
+alsa-utils
 base-devel
 broadcom-wl-dkms
 fzf
@@ -34,9 +35,7 @@ newsboat
 nodejs
 noto-fonts
 picom
-pipewire
-pipewire-jack
-pipewire-pulse
+pulseaudio
 python-pip
 ranger
 scrot
