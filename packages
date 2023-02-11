@@ -1,11 +1,15 @@
 #######################
 #      Necessary      #
 #######################
+base-devel
 broadcom-wl-dkms
 fzf
 intel-ucode
 irssi
 less
+libX11-devel
+libXft-devel
+libXinerama-devel
 NetworkManager
 nmap
 rsync
@@ -26,6 +30,8 @@ nodejs
 noto-fonts-cjk
 picom
 pipewire
+pipewire-jack
+pipewire-pulse
 python-pip
 ranger
 scrot
