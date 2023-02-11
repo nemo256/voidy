@@ -26,6 +26,7 @@ echo -ne "
                                 Setup Language And Locale
 ------------------------------------------------------------------------------------------
 "
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
 sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/default/libc-locales
 xbps-reconfigure -fv glibc-locales 
 
@@ -41,6 +42,7 @@ ENCRYPTED_PASSWORD=$(openssl passwd -6 -salt 'salt' ${PASSWORD})
 usermod --password "${ENCRYPTED_MASTER_PASSWORD}" root
 usermod --password "${ENCRYPTED_PASSWORD}" ${USERNAME}
 echo "${HOSTNAME}" > /etc/hostname
+chsh -s ${SHELL} root
 
 echo -ne "
 ------------------------------------------------------------------------------------------
