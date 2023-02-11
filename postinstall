@@ -54,6 +54,29 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 echo -ne "
 ------------------------------------------------------------------------------------------
+                                  Fstab configuration
+------------------------------------------------------------------------------------------
+"
+UUIDs=$(blkid | grep -Eo "UUID=\".*\"" | cut -d "\"" -f2)
+
+echo "# <file system> <mount point> <type> <options> <dump> <pass>" > /etc/fstab
+for UUID in $UUIDs; do
+  TYPE=$(blkid | grep $UUID | sed -n 's/.*TYPE="\([^"]*\)".*/\1/p')
+  if [ "${TYPE}" == "vfat" ]; then
+    echo "UUID=$UUID /boot/efi vfat defaults 0 2" >> /etc/fstab
+  elif [ "${TYPE}" == "ext4" ]; then
+    echo "UUID=$UUID / ext4 defaults 0 1" >> /etc/fstab
+  elif [ "${TYPE}" == "swap" ]; then
+    echo "UUID=$UUID none swap defaults 0 0" >> /etc/fstab
+  else
+    echo "UUID=$UUID /mnt/disk-$UUID ${TYPE} defaults 0 0" >> /etc/fstab
+  fi
+done
+
+chmod 644 /etc/fstab
+
+echo -ne "
+------------------------------------------------------------------------------------------
                                   Installing packages
 ------------------------------------------------------------------------------------------
 "
