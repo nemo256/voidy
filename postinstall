@@ -53,7 +53,6 @@ echo -ne "
 ------------------------------------------------------------------------------------------
 "
 UUIDs=$(blkid | grep -Eo "UUID=\".*\"" | cut -d "\"" -f2)
-
 echo "# <file system> <mount point> <type> <options> <dump> <pass>" > /etc/fstab
 for UUID in $UUIDs; do
   TYPE=$(blkid | grep $UUID | sed -n 's/.*TYPE="\([^"]*\)".*/\1/p')
@@ -64,7 +63,6 @@ for UUID in $UUIDs; do
   fi
 done
 echo "/swapfile none swap rw,noatime,discard 0 0" >> /etc/fstab
-
 chmod 644 /etc/fstab
 
 echo -ne "
@@ -88,7 +86,6 @@ if [[ ! -f "packages" ]]; then
   echo "Error: packages file not found."
   exit 1
 fi
-
 while read line
 do
   if [[ $line == "" ]] || [[ $line == \#* ]]; then

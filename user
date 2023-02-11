@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
 
-# Get environment variables
 source .env
-
-# Home directory
-cd ${HOME}
 
 echo -ne "
 ------------------------------------------------------------------------------------------
                                    Github Configuration      
 ------------------------------------------------------------------------------------------
 "
+cd ${HOME}
 echo -ne "https://nemo256:${TOKEN}@github.com" > ${HOME}/.git-credentials
 git config --global credential.helper store
 
@@ -19,7 +16,6 @@ echo -ne "
                                   Installing from github
 ------------------------------------------------------------------------------------------
 "
-cd ${HOME}
 [[ ! -d .dotfiles ]] \
   && git clone https://github.com/nemo256/.dotfiles
 # [[ ! -d Documents ]] \
@@ -30,9 +26,8 @@ cd ${HOME}
 #   && git clone https://github.com/nemo256/Music
 # [[ ! -d Templates ]] \
 #   && git clone https://github.com/nemo256/Templates
-
-# Preparing dwm, st, dmenu...
 [[ ! -d .build ]] && mkdir .build
+
 cd .build
 [[ ! -d dwm ]] \
   && git clone https://github.com/nemo256/dwm
@@ -122,10 +117,8 @@ echo -ne "
 "
 git clone https://github.com/nemo256/vimy \
   ${HOME}/.config/nvim
-
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
   ${HOME}/.local/share/nvim/site/pack/packer/start/packer.nvim
-
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 echo -ne "
@@ -135,7 +128,6 @@ echo -ne "
 "
 git clone https://github.com/alexanderjeurissen/ranger_devicons \
   ${HOME}/.config/ranger/plugins/ranger_devicons
-
 cd ${HOME}/.config/ranger/plugins/ranger_devicons/
 python -m devicons
 cd ${HOME}

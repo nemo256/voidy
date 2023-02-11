@@ -57,10 +57,8 @@ echo -ne "
 umount -A --recursive /mnt
 sgdisk -Z ${DISK}
 sgdisk -a 2048 -o ${DISK}
-
 sgdisk -n 1::+256M  --typecode=1:AF00 --change-name=1:'ESP'  ${DISK}
 sgdisk -n 2::-0     --typecode=2:8300 --change-name=2:'ROOT' ${DISK}
-
 partprobe ${DISK}
 
 echo -ne "
@@ -71,7 +69,6 @@ echo -ne "
 mkfs.fat -F 32 ${DISK}1
 fatlabel ${DISK}1 ESP
 mkfs.ext4 -L ROOT ${DISK}2
-
 mount /dev/disk/by-label/ROOT /mnt
 mkdir -p /mnt/boot/efi
 mount /dev/disk/by-label/ESP /mnt/boot/efi
@@ -98,7 +95,6 @@ echo -ne "
 "
 mkdir -p /mnt/var/db/xbps/keys
 cp /var/db/xbps/keys/* /mnt/var/db/xbps/keys/
-
 XBPS_ARCH=$ARCH xbps-install -Sy -r /mnt -R "$REPO" base-system
 
 echo -ne "
@@ -108,7 +104,6 @@ echo -ne "
 "
 cp -fvr /etc/resolv.conf /mnt/etc/
 cp -fvr /root/voidy/postinstall /root/voidy/user /root/voidy/packages /root/voidy/.env /mnt
-
 ( xchroot /mnt /postinstall ) |& tee postinstall.log
 ( xchroot /mnt /usr/bin/runuser -u ${USERNAME} -- /user ) |& tee user.log
 cp -fvr postinstall.log user.log /mnt
