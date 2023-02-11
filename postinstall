@@ -42,18 +42,6 @@ echo "${HOSTNAME}" > /etc/hostname
 
 echo -ne "
 ------------------------------------------------------------------------------------------
-                                 Creating GRUB Boot Menu
-------------------------------------------------------------------------------------------
-"
-xbps-install -S -y git neovim grub-x86_64-efi void-repo-nonfree
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub
-# sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="[^"]*/& rootflags=data=writeback libata.force=1:noncq acpi_osi=!Darwin/' /etc/default/grub
-sed -i 's/^GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/' /etc/default/grub
-sed -i 's/^#GRUB_DISABLE_SUBMENU=y/GRUB_DISABLE_SUBMENU=y/' /etc/default/grub
-grub-mkconfig -o /boot/grub/grub.cfg
-
-echo -ne "
-------------------------------------------------------------------------------------------
                                   Fstab configuration
 ------------------------------------------------------------------------------------------
 "
@@ -65,15 +53,27 @@ for UUID in $UUIDs; do
   if [ "${TYPE}" == "vfat" ]; then
     echo "UUID=$UUID /boot/efi vfat defaults 0 2" >> /etc/fstab
   elif [ "${TYPE}" == "ext4" ]; then
-    echo "UUID=$UUID / ext4 defaults 0 1" >> /etc/fstab
+    echo "UUID=$UUID / ext4 defaults,discard 0 1" >> /etc/fstab
   elif [ "${TYPE}" == "swap" ]; then
-    echo "UUID=$UUID none swap defaults 0 0" >> /etc/fstab
+    echo "UUID=$UUID swap swap rw,noatime,discard 0 0" >> /etc/fstab
   else
     echo "UUID=$UUID /mnt/disk-$UUID ${TYPE} defaults 0 0" >> /etc/fstab
   fi
 done
 
 chmod 644 /etc/fstab
+
+echo -ne "
+------------------------------------------------------------------------------------------
+                                 Creating GRUB Boot Menu
+------------------------------------------------------------------------------------------
+"
+xbps-install -S -y git neovim grub-x86_64-efi void-repo-nonfree
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub
+# sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="[^"]*/& rootflags=data=writeback libata.force=1:noncq acpi_osi=!Darwin/' /etc/default/grub
+sed -i 's/^GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/' /etc/default/grub
+sed -i 's/^#GRUB_DISABLE_SUBMENU=y/GRUB_DISABLE_SUBMENU=y/' /etc/default/grub
+grub-mkconfig -o /boot/grub/grub.cfg
 
 echo -ne "
 ------------------------------------------------------------------------------------------
