@@ -144,3 +144,10 @@ git clone https://github.com/alexanderjeurissen/ranger_devicons \
 cd ${HOME}/.config/ranger/plugins/ranger_devicons/
 python -m devicons
 cd ${HOME}
+
+echo -ne "
+------------------------------------------------------------------------------------------
+                                   Update fetch screen
+------------------------------------------------------------------------------------------
+"
+neofetch > ${HOME}/bin/fetchstart
