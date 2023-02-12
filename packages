@@ -5,6 +5,7 @@ alsa-utils
 alsa-plugins-pulseaudio
 base-devel
 broadcom-wl-dkms
+elogind
 ffmpeg
 fzf
 harfbuzz-devel
