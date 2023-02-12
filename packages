@@ -4,7 +4,11 @@
 alsa-utils
 alsa-plugins-pulseaudio
 base-devel
+bluez
+brightnessctl
 broadcom-wl-dkms
+cups
+cups-filters
 elogind
 harfbuzz-devel
 intel-ucode
@@ -16,8 +20,6 @@ libXrandr-devel
 ncurses-devel
 NetworkManager
 sudo
-bluez
-brightnessctl
 nodejs
 noto-fonts
 pulseaudio
