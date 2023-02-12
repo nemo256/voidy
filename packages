@@ -6,13 +6,8 @@ alsa-plugins-pulseaudio
 base-devel
 broadcom-wl-dkms
 elogind
-ffmpeg
-fzf
 harfbuzz-devel
-htop
 intel-ucode
-irssi
-less
 libspa-bluetooth
 libX11-devel
 libXft-devel
@@ -20,41 +15,14 @@ libXinerama-devel
 libXrandr-devel
 ncurses-devel
 NetworkManager
-nmap
-rsync
 sudo
-neovim
 bluez
 brightnessctl
-dunst
-exa
-# firefox
-git
-mpc
-mpd
-mpv
-ncmpcpp
-neofetch
-newsboat
 nodejs
 noto-fonts
-picom
 pulseaudio
 python-pip
-ranger
-scrot
-stow
-sxiv
-termdown
 terminus-font
-tremc
-tree
-font-fira-ttf
-# nerd-fonts
-unrar
-unzip
-upower
-virtualbox-ose-guest
 webkit2gtk
 wget
 wireless_tools
@@ -62,9 +30,49 @@ xclip
 xorg
 xinit
 yarn
+
+#######################
+#    User specific    #
+#######################
+ffmpeg
+fzf
+htop
+irssi
+less
+nmap
+rsync
+neovim
+dunst
+exa
+firefox
+git
+mpc
+mpd
+mpv
+ncmpcpp
+neofetch
+newsboat
+picom
+ranger
+scrot
+stow
+sxiv
+termdown
+tremc
+tree
+font-fira-ttf
+nerd-fonts-ttf
+unrar
+unzip
+upower
 yt-dlp
 zathura
 zip
+
+#######################
+#       Drivers       #
+#######################
+virtualbox-ose-guest
 # libva-intel-driver
 # libvdpau-va-gl
 # libva-utils
