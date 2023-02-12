@@ -2,8 +2,10 @@
 #      Necessary      #
 #######################
 alsa-utils
+alsa-plugins-pulseaudio
 base-devel
 broadcom-wl-dkms
+ffmpeg
 fzf
 harfbuzz-devel
 htop
@@ -27,6 +29,7 @@ dunst
 exa
 # firefox
 git
+mpc
 mpd
 mpv
 ncmpcpp

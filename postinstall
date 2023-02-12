@@ -39,7 +39,7 @@ echo -ne "
 ------------------------------------------------------------------------------------------
 "
 groupadd libvirt
-useradd -m -G wheel,libvirt -s /bin/bash --badname ${USERNAME}
+useradd -m -G wheel,audio,video,libvirt -s /bin/bash --badname ${USERNAME}
 ENCRYPTED_MASTER_PASSWORD=$(openssl passwd -6 -salt 'salt' ${MASTER_PASSWORD})
 ENCRYPTED_PASSWORD=$(openssl passwd -6 -salt 'salt' ${PASSWORD})
 usermod --password "${ENCRYPTED_MASTER_PASSWORD}" root
@@ -131,7 +131,6 @@ echo -ne "
 "
 ln -sf /etc/sv/dhcpcd /etc/runit/runsvdir/default
 ln -sf /etc/sv/NetworkManager /etc/runit/runsvdir/default
-ln -sf /etc/sv/pipewire /etc/runit/runsvdir/default
 # slock??
 
 echo -ne "
