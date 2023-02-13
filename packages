@@ -37,6 +37,7 @@ yarn
 #    User specific    #
 #######################
 ffmpeg
+figlet
 fzf
 htop
 irssi
