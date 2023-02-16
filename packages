@@ -36,6 +36,7 @@ yarn
 #######################
 #    User specific    #
 #######################
+cmatrix
 ffmpeg
 figlet
 fzf
