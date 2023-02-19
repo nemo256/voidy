@@ -13,10 +13,6 @@ elogind
 harfbuzz-devel
 intel-ucode
 libspa-bluetooth
-libX11-devel
-libXft-devel
-libXinerama-devel
-libXrandr-devel
 ncurses-devel
 NetworkManager
 sudo
@@ -29,14 +25,14 @@ webkit2gtk
 wget
 wireless_tools
 xclip
-xorg
-xinit
 yarn
 
 #######################
 #    User specific    #
 #######################
 cmatrix
+dunst
+exa
 ffmpeg
 figlet
 fzf
@@ -46,8 +42,6 @@ less
 nmap
 rsync
 neovim
-dunst
-exa
 feh
 firefox
 git
