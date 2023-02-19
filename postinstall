@@ -102,7 +102,6 @@ echo -ne "
 # ln -sf /etc/sv/cupsd /etc/runit/runsvdir/default
 ln -sf /etc/sv/dhcpcd /etc/runit/runsvdir/default
 ln -sf /etc/sv/NetworkManager /etc/runit/runsvdir/default
-# slock??
 
 echo -ne "
 ------------------------------------------------------------------------------------------
