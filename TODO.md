@@ -4,4 +4,3 @@
 - [x] Finish seting up <install.sh>.
 - [x] Update post-installation finishing touches.
 - [ ] Update to xbps (void linux) specific commands.
-- [ ] Switch to Wayland - Hyprland.
