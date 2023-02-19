@@ -35,7 +35,9 @@ dunst
 exa
 ffmpeg
 figlet
+font-firacode
 fzf
+git
 htop
 irssi
 less
@@ -44,13 +46,11 @@ rsync
 neovim
 feh
 firefox
-git
 mpc
 mpd
 mpv
 ncmpcpp
 newsboat
-pfetch
 picom
 ranger
 scrot
@@ -60,7 +60,6 @@ termdown
 tldr
 tremc
 tree
-font-firacode
 nerd-fonts
 unrar
 unzip
