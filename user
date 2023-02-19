@@ -18,14 +18,14 @@ echo -ne "
 "
 [[ ! -d .dotfiles ]] \
   && git clone https://github.com/nemo256/.dotfiles
-# [[ ! -d Documents ]] \
-#   && git clone https://github.com/nemo256/Documents
-# [[ ! -d Pictures ]] \
-#   && git clone https://github.com/nemo256/Pictures
-# [[ ! -d Music ]] \
-#   && git clone https://github.com/nemo256/Music
-# [[ ! -d Templates ]] \
-#   && git clone https://github.com/nemo256/Templates
+[[ ! -d Documents ]] \
+  && git clone https://github.com/nemo256/Documents
+[[ ! -d Pictures ]] \
+  && git clone https://github.com/nemo256/Pictures
+[[ ! -d Music ]] \
+  && git clone https://github.com/nemo256/Music
+[[ ! -d Templates ]] \
+  && git clone https://github.com/nemo256/Templates
 [[ ! -d .build ]] && mkdir .build
 
 cd .build
@@ -35,10 +35,12 @@ cd .build
   && git clone https://github.com/nemo256/st
 [[ ! -d dmenu ]] \
   && git clone https://github.com/nemo256/dmenu
-[[ ! -d slstatus ]] \
-  && git clone https://github.com/nemo256/slstatus
 [[ ! -d slock ]] \
   && git clone https://github.com/nemo256/slock
+[[ ! -d slstatus ]] \
+  && git clone https://github.com/nemo256/slstatus
+[[ ! -d fetchy ]] \
+  && git clone https://github.com/nemo256/fetchy
 [[ ! -d ani-cli ]] \
   && git clone https://github.com/pystardust/ani-cli
 [[ ! -d tty-clock ]] \
@@ -54,6 +56,7 @@ cd ../st && sudo make clean install
 cd ../dmenu && sudo make clean install
 cd ../slock && sudo make clean install
 cd ../slstatus && sudo make clean install
+cd ../fetchy && sudo make clean install
 cd ../ani-cli && sudo chmod +x ani-cli && sudo cp -fvr ani-cli /usr/local/bin/ani-cli
 cd ../tty-clock && make && sudo make install
 cd ../grabc && make && sudo make install
@@ -131,9 +134,3 @@ git clone https://github.com/alexanderjeurissen/ranger_devicons \
 cd ${HOME}/.config/ranger/plugins/ranger_devicons/
 python -m devicons
 cd ${HOME}
-
-echo -ne "
-------------------------------------------------------------------------------------------
-                                   Update fetch screen
-------------------------------------------------------------------------------------------
-"
