@@ -103,7 +103,7 @@ echo -ne "
 cp -fvr /etc/resolv.conf /mnt/etc/
 cp -fvr /root/voidy/postinstall /root/voidy/user /root/voidy/packages /root/voidy/.env /mnt
 ( xchroot /mnt /postinstall ) |& tee postinstall.log
-( xchroot /mnt /usr/bin/runuser -u ${USERNAME} -- /user ) |& tee user.log
+# ( xchroot /mnt /usr/bin/runuser -u ${USERNAME} -- /user ) |& tee user.log
 cp -fvr postinstall.log user.log /mnt
 
 echo -ne "
