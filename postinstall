@@ -96,12 +96,62 @@ done < packages
 
 echo -ne "
 ------------------------------------------------------------------------------------------
+                                   Disabling Screen Tear
+------------------------------------------------------------------------------------------
+"
+echo -ne 'Section "Device"
+  Identifier "Intel Graphics"
+  Driver "intel"
+  Option "TearFree" "true"
+EndSection
+' > /etc/X11/xorg.conf.d/20-intel.conf
+
+echo -ne "
+------------------------------------------------------------------------------------------
+                               Updating Touchpad Configuration
+------------------------------------------------------------------------------------------
+"
+echo -ne 'Section "InputClass"
+    Identifier "libinput touchpad catchall"
+    MatchIsTouchpad "on"
+    MatchDevicePath "/dev/input/event*"
+    Option "Tapping" "True"
+    Option "TappingDrag" "True"
+    Option "ScrollMethod" "Twofinger"
+    Option "NaturalScrolling" "False"
+    Option "DisableWhileTyping" "False"
+    Driver "libinput"
+EndSection
+' > /etc/X11/xorg.conf.d/40-libinput.conf
+
+echo -ne "
+------------------------------------------------------------------------------------------
+                                    Slock Configuration
+------------------------------------------------------------------------------------------
+"
+# echo -ne '[Unit]
+# Description=Lock X session using slock for user %i
+# Before=sleep.target
+#
+# [Service]
+# User=%i
+# Environment=DISPLAY=:0
+# ExecStartPre=/usr/bin/xset dpms force suspend
+# ExecStart=/usr/local/bin/slock
+#
+# [Install]
+# WantedBy=sleep.target
+# ' > /etc/systemd/system/slock@.service
+
+echo -ne "
+------------------------------------------------------------------------------------------
                                Re-enabling Essential Services
 ------------------------------------------------------------------------------------------
 "
 # ln -sf /etc/sv/cupsd /etc/runit/runsvdir/default
 ln -sf /etc/sv/dhcpcd /etc/runit/runsvdir/default
 ln -sf /etc/sv/NetworkManager /etc/runit/runsvdir/default
+# slock??????
 
 echo -ne "
 ------------------------------------------------------------------------------------------
