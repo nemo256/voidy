@@ -10,6 +10,7 @@ broadcom-wl-dkms
 cups
 cups-filters
 elogind
+harfbuzz-devel
 intel-ucode
 libspa-bluetooth
 libX11-devel
@@ -18,11 +19,11 @@ libXinerama-devel
 libXrandr-devel
 ncurses-devel
 NetworkManager
-sudo
 nodejs
 noto-fonts
 pulseaudio
 python-pip
+sudo
 terminus-font
 webkit2gtk
 wget
