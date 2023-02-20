@@ -12,6 +12,10 @@ cups-filters
 elogind
 intel-ucode
 libspa-bluetooth
+libX11-devel
+libXft-devel
+libXinerama-devel
+libXrandr-devel
 ncurses-devel
 NetworkManager
 sudo
@@ -23,6 +27,8 @@ terminus-font
 webkit2gtk
 wget
 wireless_tools
+xinit
+xorg
 xclip
 yarn
 
