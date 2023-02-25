@@ -1,8 +1,9 @@
 #######################
 #      Necessary      #
 #######################
-alsa-utils
+NetworkManager
 alsa-plugins-pulseaudio
+alsa-utils
 base-devel
 bluez
 brightnessctl
@@ -12,13 +13,12 @@ cups-filters
 elogind
 harfbuzz-devel
 intel-ucode
-libspa-bluetooth
 libX11-devel
 libXft-devel
 libXinerama-devel
 libXrandr-devel
+libspa-bluetooth
 ncurses-devel
-NetworkManager
 nodejs
 noto-fonts
 pulseaudio
@@ -28,9 +28,9 @@ terminus-font
 webkit2gtk
 wget
 wireless_tools
+xclip
 xinit
 xorg
-xclip
 yarn
 
 #######################
@@ -41,8 +41,8 @@ dunst
 exa
 feh
 ffmpeg
-firefox
 figlet
+firefox
 font-firacode
 fzf
 git
@@ -65,8 +65,8 @@ stow
 sxiv
 termdown
 tldr
-tremc
 tree
+tremc
 unrar
 unzip
 upower
@@ -77,9 +77,9 @@ zip
 #######################
 #       Drivers       #
 #######################
-virtualbox-ose-guest
 # libva-intel-driver
-# libvdpau-va-gl
 # libva-utils
+# libvdpau-va-gl
 # vulkan-intel
 # xf86-video-intel
+virtualbox-ose-guest
